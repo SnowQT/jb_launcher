@@ -7,10 +7,12 @@ made by JagerBom
 
 3 put ressource 'CheckPlayerValidation' in your server.cfg and start it
 
-4 In your /var/www/html folder drop the folder 'JoinApi'
+4 In ressource 'CheckPlayerValidation' server sided, change ip to the ip of your machine
 
-5 In the folder JoinApi, go to database.php and configure it
+5 In your /var/www/html folder drop the folder 'JoinApi'
 
-6 there is no 6... 
+6 In the folder JoinApi, go to database.php and configure it
+
+7 there is no 7... 
 
 All credits goes to JagerBom and is strictly shared in the group DevESXAvances
