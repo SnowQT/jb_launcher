@@ -1,0 +1,210 @@
+﻿<Window x:Name="mainWindow" x:Class="FairyVLauncher2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FairyVLauncher2"
+        mc:Ignorable="d"
+        xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
+        Title="FairyV launcher" Height="600" Width="1080" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" Icon="FairyV.ico" Loaded="MainWindow_Loaded">
+
+    <Window.Resources>
+        <XmlDataProvider x:Key="RSSData" XPath="//item" Source="https://fairy-v.com/feed/" />
+        <Image x:Key="DiscordIcon" Source="./Img/DiscordIcon.png"/>
+        <Image x:Key="DonationIcon" Source="./Img/Donation.png"/>
+        <Image x:Key="DonationGif1" Source="./Img/Donation1.gif"/>
+        <Image x:Key="DonationGif2" Source="./Img/Donation2.gif"/>
+        <Image x:Key="FairyVPng" Source="./Img/FairyV.png"/>
+        <Image x:Key="TopServerPng" Source="./Img/TopServer.png"/>
+        <Image x:Key="FaceBookPng" Source="./Img/FaceBookLogo.png"/>
+        <Image x:Key="TwitterPng" Source="./Img/Twitter.png"/>
+        <Image x:Key="ImageAcceuiljpg" Source="./Img/ImageAcceuil.jpg"/>
+    </Window.Resources>
+    <Grid>
+        <Grid Height="60" VerticalAlignment="Top"  Background="#3B103A" MouseDown="Grid_MouseDown">
+            <TextBlock Text="FairyV launcher" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" FontFamily="Champagne &amp; Limousines"/>
+            <Button x:Name="btnMinimizeApp" HorizontalAlignment="Right" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,0, 50 ,0" Click="BtnMinimizeApp_Click">
+                <materialDesign:PackIcon Kind="WindowMinimize"/>
+            </Button>
+            <Button x:Name="btnCloseApp" HorizontalAlignment="Right" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" Click="BtnCloseApp_Click">
+                <materialDesign:PackIcon Kind="Close"/>
+            </Button>
+        </Grid>
+        <Grid Margin="0 60 0 0">
+            <dragablz:TabablzControl>
+                <TabItem Header="Accueil">
+                    <Grid Width="1080" Height="500" Background="#FF2F2F2F">
+                        <Grid Width="1070" Height="490" Background="#FF2F2F2F">
+                            <Button x:Name="btnDiscord" Content="{StaticResource DiscordIcon}" Margin="56,420,915,23" Height="Auto" Background="Transparent" BorderBrush="Transparent" Click="BtnDiscord_Click"/>
+                            <Button x:Name="btnFairyV" Content="{StaticResource FairyVPng}" Margin="196,420,775,23" Height="Auto" Background="Transparent" BorderBrush="Transparent" Click="BtnFairyV_Click"/>
+                            <Button x:Name="btnTopServer" Content="{StaticResource TopServerPng}" Margin="615,400,375,0" Height="Auto" Background="Transparent" BorderBrush="Transparent" Click="BtnTopServer_Click"/>
+                            <Button x:Name="btnFaceBook" Content="{StaticResource FaceBookPng}" Margin="476,420,495,23" Height="Auto" Background="Transparent" BorderBrush="Transparent" Click="BtnFaceBook_Click"/>
+                            <Button x:Name="btnTwitter" Content="{StaticResource TwitterPng}" Margin="336,420,635,23" Height="Auto" Background="Transparent" BorderBrush="Transparent" Click="BtnTwitter_Click"/>
+                            <ListBox x:Name="lstbx1" ItemsSource="{Binding Source={StaticResource RSSData}}" Margin="812,96,10,244" SelectedIndex="0" Cursor="Hand">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding XPath=title}" FontWeight="Bold" Foreground="White"></TextBlock>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                            <StackPanel Orientation="Vertical" DataContext="{Binding ElementName=lstbx1, Path=SelectedItem}" Margin="812,326,10,10">
+                                <TextBlock Text="{Binding XPath=title}" FontSize="14" FontWeight="Bold" Height="22" Foreground="White"/>
+                                <TextBlock Text="{Binding XPath=pubDate}" FontStyle="Italic" Height="20" FontSize="10" Foreground="White"/>
+                                <TextBlock Text="{Binding XPath=description}" TextWrapping="Wrap" Height="Auto" Foreground="White"/>
+                                <TextBlock Height="20" Margin="0,0,-0.4,0"><Hyperlink x:Name="GoToArticle" Tag="{Binding InnerText, XPath=link}" Click="GoToArticle_Click"><Run Text="Lire l'article"/></Hyperlink></TextBlock>
+                            </StackPanel>
+                            <Label Content="A c t u a l i t é e s" HorizontalContentAlignment="Center" Foreground="Red" HorizontalAlignment="Left" Margin="812,47,0,0" VerticalAlignment="Top" Height="42" Width="258" FontSize="22" FontWeight="ExtraBold"/>
+                            <Label Content="Bienvenue sur fairyV !" HorizontalAlignment="Left" Margin="56,47,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFE5B70B" FontSize="48" FontFamily="Imprint MT Shadow" RenderTransformOrigin="0.5,1"/>
+                            <Image HorizontalAlignment="Left" Height="261" Margin="56,134,0,0" VerticalAlignment="Top" Width="464" Source="Img/ImageAcceuil.jpg"/>
+                        </Grid>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Jouer">
+                    <Grid Width="1080" Height="500" Background="#FF2F2F2F">
+                        <Grid Width="1070" Height="490" Background="#FF2F2F2F">
+                            <Button x:Name="btnRemoveUpdate" Content="Désinstallation maj" HorizontalAlignment="Left" Margin="70,339,0,0" VerticalAlignment="Top" Width="175" Height="50" Click="BtnRemoveUpdate_Click"/>
+                            <Button x:Name="btnUpdateCheck" Content="Check maj" HorizontalAlignment="Left" Margin="451,440,0,0" VerticalAlignment="Top" Width="175" Height="50" Click="BtnUpdateCheck_Click"/>
+                            <Button x:Name="btnPlay" Content="Jouer" HorizontalAlignment="Left" Margin="451,440,0,0" VerticalAlignment="Top" Width="175" Click="BtnPlay_Click" Height="50"/>
+                            <ProgressBar x:Name="progressBar" HorizontalAlignment="Left" Height="50" Margin="423,376,0,0" VerticalAlignment="Top" Width="231"/>
+                            <Label x:Name="lblStatus" Content="" HorizontalAlignment="Left" Margin="478,339,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Background="{x:Null}" Foreground="#FF7D00FF"/>
+                            <Label Content="Localisation de GTA: " HorizontalAlignment="Left" Margin="774,242,0,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="White"/>
+                            <Button x:Name="bntChangeLoggedInUser" Content="Changer de steam" HorizontalAlignment="Left" Margin="774,120,20,0" VerticalAlignment="Top" Width="150" Height="40" Click="BntChangeLoggedInUser_Click"/>
+                            <Button x:Name="bntSetGTALocalisation" Content="Changer localisation GTA" HorizontalAlignment="Left" Margin="774,336,0,0" VerticalAlignment="Top" Width="190" Height="40" Click="BntSetGTALocalisation_Click"/>
+                            <TextBlock x:Name="txtBlckShowGtaLocalisation" HorizontalAlignment="Left" Margin="780,279,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Cursor="Hand" MouseLeftButtonUp="TxtBlckShowGtaLocalisation_MouseLeftButtonUp" Foreground="White"/>
+                            <Label Content="Steam user:" HorizontalAlignment="Left" Margin="774,40,0,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="White"/>
+                            <Label Content="Steam id hex:" HorizontalAlignment="Left" Margin="774,165,0,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="White"/>
+                            <Label x:Name="lblSteamUser" Content="" HorizontalAlignment="Left" Margin="774,80,0,0" VerticalAlignment="Top" Cursor="Hand" MouseLeftButtonUp="LblSteamUser_MouseLeftButtonUp" Foreground="White"/>
+                            <Label x:Name="lblSteamHex" Content="" HorizontalAlignment="Left" Margin="774,196,0,0" VerticalAlignment="Top" MouseLeftButtonUp="LblSteamHex_MouseLeftButtonUp" Cursor="Hand" Foreground="White"/>
+                            <Image HorizontalAlignment="Left" Height="175" Margin="427,120,0,0" VerticalAlignment="Top" Width="217" Source="Img/FairyVGrand.png"/>
+                        </Grid>
+                    </Grid>
+                </TabItem>
+
+                <TabItem Header="Règlement">
+                    <Grid Width="1080" Height="500" Background="#FF2F2F2F">
+                        <Grid Width="1070" Height="490" Background="#FF2F2F2F">
+                            <WebBrowser x:Name="wbbrsrReglement" />
+                        </Grid>
+                    </Grid>
+                </TabItem>
+                <!--<TabItem Header="Info pratiques">
+                    <Grid Width="1080" Height="500" Background="#FF2F2F2F">
+                        <Grid Width="1070" Height="490" Background="#FF2F2F2F">
+
+                        </Grid>
+                    </Grid>
+                </TabItem>-->
+                <TabItem Header="Dons">
+                    <Grid Width="1080" Height="500" Background="#FF2F2F2F">
+                        <Grid Width="1070" Height="490" Background="#FF2F2F2F">
+                            <Button  Margin="50,0,0,0" Height="300" HorizontalAlignment="left" VerticalAlignment="Center" Background="Transparent" BorderBrush="Transparent" Click="BtnDonation_Click">
+                                <Image gif:ImageBehavior.AnimatedSource="Img/Donation1.gif" />
+                            </Button>
+                            <Button Margin="0,0,50,0"  Height="300" HorizontalAlignment="Right" VerticalAlignment="Center" Background="Transparent" BorderBrush="Transparent" Click="BtnDonation_Click">
+                                <Image gif:ImageBehavior.AnimatedSource="Img/Donation2.gif" />
+                            </Button>
+                        </Grid>
+                    </Grid>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <materialDesign:PackIcon Kind="Bell" Foreground="{DynamicResource PrimaryHueLightBrush}"/>
+                    </TabItem.Header>
+                    <Grid Width="1080" Height="500" Background="#FF2F2F2F">
+                        <Grid Width="1070" Height="490" Background="#FF2F2F2F">
+                            <StackPanel Margin="30,30,30,30">
+                                <Label  Content="1.0.0 Lancement Launcher" FontSize="36" Foreground="White"/>
+                                <TextBlock Text="- Mise enpplace de launcher" FontSize="18" Height="30" Foreground="White"/>
+                                <TextBlock Text="- Connection avec steam pour avoir le steamid" FontSize="18" Height="30" Foreground="White"/>
+                                <TextBlock Text="- Check si steam est ouvet ou pas" FontSize="18" Height="30" Foreground="White"/>
+                                <TextBlock Text="- Plus de 32 joueurs les jouerus peuvent pas se co sur le serveur" FontSize="18" Height="30" Foreground="White"/>
+                                <TextBlock Text="- Regarde si t'as la plus récente maj" FontSize="18" Height="30" Foreground="White"/>
+                                <TextBlock Text="- Si t'as pas la maj a journ, il la supprime et met le rpf d'origine" FontSize="18" Height="30" Foreground="White"/>
+                                <TextBlock Text="- Regarder le règlement de serveur" FontSize="18" Height="30" Foreground="White"/>
+                                <TextBlock Text="- Avoir les derneires maj du RRS" FontSize="18" Height="30" Foreground="White"/>
+                                <TextBlock Text="- On peut cliquer sur son nom steam/steamid/chemin de gta pour copier" FontSize="18" Height="30" Foreground="White"/>
+                                <TextBlock Text="- Sur les images de dons, on est redirect sur la page de dons" FontSize="18" Height="30" Foreground="White"/>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </TabItem>
+            </dragablz:TabablzControl>
+        </Grid>
+        <!--<Grid x:Name="gridAcceuil" Margin="0 60 0 0">
+            <Button x:Name="btnDiscord" Content="{StaticResource DiscordIcon}" Margin="56,420,915,23" Height="Auto" Background="Transparent" BorderBrush="Transparent" Click="BtnDiscord_Click"/>
+            <Button x:Name="btnFairyV" Content="{StaticResource FairyVPng}" Margin="196,420,775,23" Height="Auto" Background="Transparent" BorderBrush="Transparent" Click="BtnFairyV_Click"/>
+            <Button x:Name="btnTopServer" Content="{StaticResource TopServerPng}" Margin="615,420,356,23" Height="Auto" Background="Transparent" BorderBrush="Transparent" Click="BtnTopServer_Click"/>
+            <Button x:Name="btnFaceBook" Content="{StaticResource FaceBookPng}" Margin="476,420,495,23" Height="Auto" Background="Transparent" BorderBrush="Transparent" Click="BtnFaceBook_Click"/>
+            <Button x:Name="btnTwitter" Content="{StaticResource TwitterPng}" Margin="336,420,635,23" Height="Auto" Background="Transparent" BorderBrush="Transparent" Click="BtnTwitter_Click"/>
+            <ListBox x:Name="lstbx1" ItemsSource="{Binding Source={StaticResource RSSData}}" Margin="812,96,10,244" SelectedIndex="0" Cursor="Hand">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding XPath=title}" FontWeight="Bold" Foreground="White"></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <StackPanel Orientation="Vertical" DataContext="{Binding ElementName=lstbx1, Path=SelectedItem}" Margin="812,326,10,10">
+                <TextBlock Text="{Binding XPath=title}" FontSize="14" FontWeight="Bold" Height="22" Foreground="White"/>
+                <TextBlock Text="{Binding XPath=pubDate}" FontStyle="Italic" Height="20" FontSize="10" Foreground="White"/>
+                <TextBlock Text="{Binding XPath=description}" TextWrapping="Wrap" Height="Auto" Foreground="White"/>
+                <TextBlock Height="20" Margin="0,0,-0.4,0"><Hyperlink x:Name="GoToArticle" Tag="{Binding InnerText, XPath=link}" Click="GoToArticle_Click"><Run Text="Lire l'article"/></Hyperlink></TextBlock>
+            </StackPanel>
+            <Label Content="A c t u a l i t é e s" HorizontalContentAlignment="Center" Foreground="Red" HorizontalAlignment="Left" Margin="812,47,0,0" VerticalAlignment="Top" Height="42" Width="258" FontSize="22" FontWeight="ExtraBold"/>
+            <Label Content="Bienvenue sur fairyV !" HorizontalAlignment="Left" Margin="56,47,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFE5B70B" FontSize="48" FontFamily="Imprint MT Shadow" RenderTransformOrigin="0.5,1"/>
+            <Image HorizontalAlignment="Left" Height="261" Margin="56,134,0,0" VerticalAlignment="Top" Width="464" Source="Img/ImageAcceuil.jpg"/>
+        </Grid>-->
+        <!--<Grid Name="gridJouer" Margin="0 60 0 0">
+
+            <Button x:Name="btnRemoveUpdate" Content="Désinstallation maj" HorizontalAlignment="Left" Margin="70,339,0,0" VerticalAlignment="Top" Width="175" Height="50" Click="BtnRemoveUpdate_Click"/>
+            <Button x:Name="btnUpdateCheck" Content="Check maj" HorizontalAlignment="Left" Margin="451,460,0,0" VerticalAlignment="Top" Width="175" Height="50" Click="BtnUpdateCheck_Click"/>
+            <Button x:Name="btnPlay" Content="Jouer" HorizontalAlignment="Left" Margin="451,460,0,0" VerticalAlignment="Top" Width="175" Click="BtnPlay_Click" Height="50"/>
+            <ProgressBar x:Name="progressBar" HorizontalAlignment="Left" Height="50" Margin="423,376,0,0" VerticalAlignment="Top" Width="231"/>
+            <Label x:Name="lblStatus" Content="" HorizontalAlignment="Left" Margin="478,339,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Background="{x:Null}" Foreground="#FF7D00FF"/>
+            <Label Content="Localisation de GTA: " HorizontalAlignment="Left" Margin="774,242,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+
+            <Button x:Name="bntSetGTALocalisation" Content="Changer localisation GTA" HorizontalAlignment="Left" Margin="774,336,0,0" VerticalAlignment="Top" Width="190" Height="40" Click="BntSetGTALocalisation_Click"/>
+            <TextBlock x:Name="txtBlckShowGtaLocalisation" HorizontalAlignment="Left" Margin="780,279,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Cursor="Hand" MouseLeftButtonUp="TxtBlckShowGtaLocalisation_MouseLeftButtonUp"/>
+            <Label Content="Steam user:" HorizontalAlignment="Left" Margin="774,89,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+            <Label Content="Steam id hex:" HorizontalAlignment="Left" Margin="774,165,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+            <Label x:Name="lblSteamUser" Content="" HorizontalAlignment="Left" Margin="774,120,0,0" VerticalAlignment="Top" Cursor="Hand" MouseLeftButtonUp="LblSteamUser_MouseLeftButtonUp"/>
+            <Label x:Name="lblSteamHex" Content="" HorizontalAlignment="Left" Margin="774,196,0,0" VerticalAlignment="Top" MouseLeftButtonUp="LblSteamHex_MouseLeftButtonUp" Cursor="Hand"/>
+            <Image HorizontalAlignment="Left" Height="175" Margin="427,120,0,0" VerticalAlignment="Top" Width="217" Source="Img/FairyV.png"/>
+
+
+        </Grid>-->
+
+        <!--<Grid x:Name="gridRèglement" Margin="0 60 0 0">
+ 
+        </Grid>-->
+
+        <!--<Grid x:Name="gridDonation" Margin="0 60 0 0">
+            <Button  Margin="50,0,0,0" Height="300" HorizontalAlignment="left" VerticalAlignment="Center" Background="Transparent" BorderBrush="Transparent" Click="BtnDonation_Click">
+                <Image gif:ImageBehavior.AnimatedSource="Img/Donation1.gif" />
+            </Button>
+            <Button Margin="0,0,50,0"  Height="300" HorizontalAlignment="Right" VerticalAlignment="Center" Background="Transparent" BorderBrush="Transparent" Click="BtnDonation_Click">
+                <Image gif:ImageBehavior.AnimatedSource="Img/Donation2.gif" />
+            </Button>
+        </Grid>-->
+        <!--<Grid x:Name="grdDevLog" Margin="0 100 0 0">
+            <StackPanel Margin="30,30,30,30">
+                <Label  Content="1.0.0 Lancement Launcher" FontSize="36"/>
+                <TextBlock Text="- Mise enpplace de launcher" FontSize="18" Height="30"/>
+                <TextBlock Text="- Connection avec steam pour avoir le steamid" FontSize="18" Height="30"/>
+                <TextBlock Text="- Check si steam est ouvet ou pas" FontSize="18" Height="30"/>
+                <TextBlock Text="- Plus de 32 joueurs les jouerus peuvent pas se co sur le serveur" FontSize="18" Height="30"/>
+                <TextBlock Text="- Regarde si t'as la plus récente maj" FontSize="18" Height="30"/>
+                <TextBlock Text="- si t'as pas la maj a journ, il la supprime et met le rpf d'origine" FontSize="18" Height="30"/>
+                <TextBlock Text="- Regarder le règlement de serveur" FontSize="18" Height="30"/>
+                <TextBlock Text="- Avoir les derneires maj du RRS" FontSize="18" Height="30"/>
+                <TextBlock Text="- On peut cliquer sur son nom steam/steamid/chemin de gta pour copier" FontSize="18" Height="30"/>
+                <TextBlock Text="- Sur les images de dons, on est redirect sur la page de dons" FontSize="18" Height="30"/>
+            </StackPanel>
+        </Grid>-->
+    </Grid>
+</Window>

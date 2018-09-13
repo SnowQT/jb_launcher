@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PublishUrlHistory>C:\xampp\htdocs\FairyVLauncher2\|http://91.121.73.186/FairyVLauncher/|sftp://91.121.73.186/FairyVLauncher/|91.121.73.186/FairyVLauncher/|ftps://91.121.73.186/FairyVLauncher/</PublishUrlHistory>
+    <InstallUrlHistory>http://91.121.73.186/FairyVLauncher/</InstallUrlHistory>
+    <SupportUrlHistory>https://github.com/TanguyOrtegat/</SupportUrlHistory>
+    <UpdateUrlHistory>http://91.121.73.186/FairyVLauncher/|http://localhost/FairyVLauncher2/</UpdateUrlHistory>
+    <BootstrapperUrlHistory />
+    <ErrorReportUrlHistory>https://github.com/TanguyOrtegat/</ErrorReportUrlHistory>
+    <FallbackCulture>en-US</FallbackCulture>
+    <VerifyUploadedFiles>false</VerifyUploadedFiles>
+  </PropertyGroup>
+  <PropertyGroup>
+    <EnableSecurityDebugging>false</EnableSecurityDebugging>
+  </PropertyGroup>
+</Project>

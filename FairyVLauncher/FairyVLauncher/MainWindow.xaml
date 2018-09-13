@@ -1,0 +1,27 @@
+﻿<Window x:Class="FairyVLauncher.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FairyVLauncher"
+        mc:Ignorable="d"
+        Title="FairyV launcher" Height="600" Width="1080" ResizeMode="NoResize" Icon="FairyV.ico" WindowStartupLocation="CenterScreen">
+    <StackPanel>
+        <Grid Height="40">
+
+        </Grid>
+        <Grid Height="100" >
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <Button Uid="" Content="Accueil" Width="150" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF2196F3"/>
+                <Button Uid="" Content="Règlement" Width="150" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF2196F3"/>
+                <Button Uid="" Content="Whitelist" Width="150" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF2196F3"/>
+                <Button Uid="" Content="Règlement" Width="150" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF2196F3"/>
+                <Button Uid="" Content="Concessionnaire" Width="150" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF2196F3"/>
+            </StackPanel>
+            <Grid x:Name="GridCursor" Height="5" Background="#FF2196F3" Margin="10,69,913.6,26"/>
+        </Grid>
+        <Grid Height="460" Background="Gray">
+
+        </Grid>
+    </StackPanel>
+</Window>
