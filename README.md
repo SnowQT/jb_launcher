@@ -1,7 +1,7 @@
 # Fivem Launcher
 made by JagerBom
 
-1 choose you launcher you want 1,2 or 3. launcher 3 is nearly done and two others do have lay-out
+1 choose you launcher you want 1,2 or 3. launcher 2 is nearly done and two others do have lay-out
 
 2 insert playerjoin.sql in your database
 
