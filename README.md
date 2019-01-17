@@ -15,4 +15,4 @@ made by JagerBom
 
 7 there is no 7... 
 
-All credits goes to JagerBom and is strictly shared in the group DevESXAvances
+All credits goes to JagerBom
